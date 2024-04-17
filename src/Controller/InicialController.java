@@ -1,9 +1,9 @@
 package Controller;
 
 import View.InicialView;
-import View.ConsultaView;
+import View.CadastroView;
 import java.util.ArrayList;
-import Controller.Paciente;
+import Model.Paciente;
 
 public class InicialController {
     
@@ -21,9 +21,9 @@ public class InicialController {
     }
     
 private void abrirConsultaView() {
-    ArrayList<Paciente> listaPacientes = new ArrayList<>(); // Crie uma lista de pacientes vazia ou populada, conforme necessário
+    Paciente paciente = new Paciente();
     InicialView inicialView = new InicialView(); // Crie uma instância de InicialView
-    ConsultaView consultaView = new ConsultaView(listaPacientes, inicialView); // Passe a instância de InicialView
+    CadastroView consultaView = new CadastroView(paciente, inicialView); // Passe a instância de InicialView
     consultaView.setVisible(true);
 }
     

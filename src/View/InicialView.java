@@ -5,8 +5,9 @@
 package View;
 
 import Controller.InicialController;
-import Controller.Paciente;
-import Controller.Paciente;
+import Model.Paciente;
+import Model.Paciente;
+import Repository.PacienteRepository;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author jvazu
  */
 public class InicialView extends javax.swing.JFrame {
-
+    private PacienteRepository repository;
     /**
      * Creates new form InicialView
      */
@@ -137,7 +138,7 @@ public class InicialView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 private DefaultTableModel criarModeloTabela() {
-    ArrayList<Paciente> listaPacientes = Paciente.listar();
+    ArrayList<Paciente> listaPacientes = PacienteRepository.listarPaciente();
     String[] colunas = {"Paciente", "CPF", "Telefone", "Data", "Já é Paciente", "Consulta Realizada"};
     DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
     for (Paciente p : listaPacientes) {
@@ -153,7 +154,8 @@ private DefaultTableModel criarModeloTabela() {
     }
     return tabela;
 }
-    public void atualizarTabela(ArrayList<Paciente> listaPacientes) {
+    public void atualizarTabela() {
+        ArrayList<Paciente> listaPacientes = repository.listarPaciente();
         DefaultTableModel model = (DefaultTableModel) jTableTabela.getModel();
         model.setRowCount(0); // Limpa a tabela antes de atualizar
 
